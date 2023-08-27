@@ -1,0 +1,57 @@
+{
+    "name": "khodakhah/laravel-inertia-form",
+    "description": "A package for Inertia.js forms integration in Laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Khodakhah\\InertiaForm\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Khodakhah\\InertiaForm\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mojtaba Khodakhah",
+            "email": "khodakhah.mojtaba@yahoo.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "illuminate/support": "^v10.20",
+        "inertiajs/inertia-laravel": "^v0.6.9",
+        "spatie/laravel-data": "^3.8"
+    },
+    "require-dev": {
+        "laravel/pint": "^v1.11",
+        "pestphp/pest": "^v2.16",
+        "pestphp/pest-plugin-laravel": "^v2.2",
+        "orchestra/testbench": "^v8.9",
+        "nunomaduro/larastan": "^v2.6"
+    },
+    "scripts": {
+        "analyse": "./vendor/bin/phpstan analyse",
+        "test": "./vendor/bin/pest",
+        "fix": "./vendor/bin/pint -v",
+        "pint": "./vendor/bin/pint -v --test"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "InertiaFormServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "alpha",
+    "prefer-stable": true
+}
