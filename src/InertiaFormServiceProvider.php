@@ -10,20 +10,20 @@ class InertiaFormServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/inertia-form.php', 'inertia-form');
 
-        $this->singleton('inertia-form', function ($app) {
+        $this->app->singleton('inertia-form', function ($app) {
             return new InertiaForm($app);
         });
     }
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'inertia-form');
-
-        $this->publishes(
-            [
-                __DIR__.'/../config/inertia-form.php' => config_path('inertia-form.php'),
-            ],
-            'config'
-        );
+        if ($this->app->runningInConsole()) {
+            $this->publishes(
+                [
+                    __DIR__.'/../config/inertia-form.php' => config_path('inertia-form.php'),
+                ],
+                'config'
+            );
+        }
     }
 }
