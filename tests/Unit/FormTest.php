@@ -16,7 +16,15 @@ it('creates inputs', function (array $input) {
             ->setDefault($input['default']);
     } elseif ($input['type'] === 'datepicker') {
         $form->datepicker($input['key'])
-            ->setDefault($input['default']);
+            ->setDefault($input['default'])
+            ->setFormat($input['format'])
+            ->setMinDate($input['minDate'])
+            ->setMaxDate($input['maxDate'])
+            ->setDisabledDates($input['disabledDates'])
+            ->setAllowedDates($input['allowedDates'])
+            ->setDisabledWeekDays($input['disabledWeekDays'])
+            ->setPlaceholder($input['placeholder'])
+            ->setRequired();
     } elseif ($input['type'] === 'datetime-local') {
         $form->datetimeLocal($input['key'])
             ->setDefault($input['default']);
@@ -96,8 +104,18 @@ it('creates inputs', function (array $input) {
             'label' => 'Datepicker',
             'default' => '2021-01-01',
             'help' => '',
-            'required' => false,
+            'required' => true,
             'placeholder' => '',
+            'format' => 'dd.mm.yyyy',
+            'minDate' => '2021-01-01',
+            'maxDate' => '2023-01-01',
+            'disabledDates' => [
+                '2021-01-02',
+            ],
+            'allowedDates' => [],
+            'disabledWeekDays' => [
+                1,
+            ],
         ]
     ],
     'datetime-local' => [
@@ -226,6 +244,9 @@ it('returns correct validations', function () {
     $form->number('phone')
         ->setLabel('Phone')
         ->setPlaceholder('Enter your phone number');
+    $form->datepicker('date')
+        ->setLabel('Date')
+        ->setPlaceholder('Enter your date of birth');
 
     assertSame([
         'name' => [
@@ -237,6 +258,9 @@ it('returns correct validations', function () {
         ],
         'phone' => [
             'numeric',
+        ],
+        'date' => [
+            'date',
         ],
     ], $form->toValidation());
 });
