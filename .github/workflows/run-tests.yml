@@ -1,0 +1,7 @@
+name: Run Tests
+on:
+  push:
+    branches: [ dev/**, feature/**, bugfix/** ]
+jobs:
+  tests:
+    uses: ./.github/workflows/tests.yml
