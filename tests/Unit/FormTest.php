@@ -1,7 +1,5 @@
 <?php
 
-use Khodakhah\InertiaForm\Form\Inputs\Number;
-use Khodakhah\InertiaForm\Form\Inputs\Text;
 use Khodakhah\InertiaForm\InertiaForm;
 
 use function PHPUnit\Framework\assertSame;
@@ -84,7 +82,7 @@ it('creates inputs', function (array $input) {
             'default' => true,
             'help' => '',
             'required' => false,
-        ]
+        ],
     ],
     'date' => [
         [
@@ -95,7 +93,7 @@ it('creates inputs', function (array $input) {
             'help' => '',
             'required' => false,
             'placeholder' => '',
-        ]
+        ],
     ],
     'datepicker' => [
         [
@@ -116,7 +114,7 @@ it('creates inputs', function (array $input) {
             'disabledWeekDays' => [
                 1,
             ],
-        ]
+        ],
     ],
     'datetime-local' => [
         [
@@ -127,7 +125,7 @@ it('creates inputs', function (array $input) {
             'help' => '',
             'required' => false,
             'placeholder' => '',
-        ]
+        ],
     ],
     'email' => [
         [
@@ -138,7 +136,7 @@ it('creates inputs', function (array $input) {
             'help' => '',
             'required' => false,
             'placeholder' => '',
-        ]
+        ],
     ],
     'month' => [
         [
@@ -149,7 +147,7 @@ it('creates inputs', function (array $input) {
             'help' => '',
             'required' => false,
             'placeholder' => '',
-        ]
+        ],
     ],
     'number' => [
         [
@@ -163,7 +161,7 @@ it('creates inputs', function (array $input) {
             'max' => null,
             'min' => null,
             'digits' => 0,
-        ]
+        ],
     ],
     'password' => [
         [
@@ -174,7 +172,7 @@ it('creates inputs', function (array $input) {
             'help' => '',
             'required' => false,
             'placeholder' => '',
-        ]
+        ],
     ],
     'radio' => [
         [
@@ -194,7 +192,7 @@ it('creates inputs', function (array $input) {
                     'label' => 'option 2',
                 ],
             ],
-        ]
+        ],
     ],
     'search' => [
         [
@@ -205,7 +203,7 @@ it('creates inputs', function (array $input) {
             'help' => '',
             'required' => false,
             'placeholder' => '',
-        ]
+        ],
     ],
     'select' => [
         [
@@ -226,7 +224,7 @@ it('creates inputs', function (array $input) {
                     'label' => 'option 2',
                 ],
             ],
-        ]
+        ],
     ],
 ]);
 

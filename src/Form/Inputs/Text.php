@@ -7,6 +7,7 @@ use Khodakhah\InertiaForm\Form\Input;
 class Text extends Input
 {
     protected string $type = 'text';
+
     protected string $placeholder = '';
 
     public function toInertia(): array
@@ -20,6 +21,7 @@ class Text extends Input
     public function setPlaceholder(string $placeholder): Input
     {
         $this->placeholder = $placeholder;
+
         return $this;
     }
 }

@@ -12,13 +12,14 @@ trait HasOptions
             'value' => $value,
             'label' => $label,
         ];
+
         return $this;
     }
 
     protected function getRules(): array
     {
         return array_merge(parent::getRules(), [
-            'in:' . implode(',', array_map(function ($option) {
+            'in:'.implode(',', array_map(function ($option) {
                 return $option['value'];
             }, $this->options)),
         ]);

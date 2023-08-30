@@ -43,33 +43,35 @@ use Khodakhah\InertiaForm\Form\Inputs\Week;
 class InertiaForm
 {
     /**
-     * @var InputInterface[] $inputs
+     * @var InputInterface[]
      */
     private array $inputs = [];
 
     private function pushInput(InputInterface $input): InputInterface
     {
         $this->inputs[] = $input;
+
         return $input;
     }
 
     public function __call(string $name, array $arguments): InputInterface
     {
-        $class = __NAMESPACE__ . '\\Form\\Inputs\\' . ucfirst($name);
+        $class = __NAMESPACE__.'\\Form\\Inputs\\'.ucfirst($name);
+
         return $this->pushInput(new $class(...$arguments));
     }
 
     public function toInertia(): array
     {
         return collect($this->inputs)
-            ->map( fn (InputInterface $input) => $input->toInertia() )
+            ->map(fn (InputInterface $input) => $input->toInertia())
             ->toArray();
     }
 
     public function toValidation(): array
     {
         return collect($this->inputs)
-            ->mapWithKeys( fn (InputInterface $input) => $input->toValidation() )
+            ->mapWithKeys(fn (InputInterface $input) => $input->toValidation())
             ->toArray();
     }
 }

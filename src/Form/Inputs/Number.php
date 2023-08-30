@@ -5,9 +5,12 @@ namespace Khodakhah\InertiaForm\Form\Inputs;
 class Number extends Text
 {
     protected string $type = 'number';
+
     protected ?int $max = null;
+
     protected ?int $min = null;
-    protected int $digits= 0;
+
+    protected int $digits = 0;
 
     protected array $fixRules = [
         'numeric',
@@ -34,24 +37,28 @@ class Number extends Text
         if ($this->min) {
             $this->fixRules[] = "min:$this->min";
         }
+
         return parent::getRules();
     }
 
     public function setMax(?int $max): Number
     {
         $this->max = $max;
+
         return $this;
     }
 
     public function setMin(?int $min): Number
     {
         $this->min = $min;
+
         return $this;
     }
 
     public function setDigits(int $digits): Number
     {
         $this->digits = $digits;
+
         return $this;
     }
 }
