@@ -9,13 +9,9 @@ class InertiaFormServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/inertia-form.php', 'inertia-form');
-
-        $this->app->singleton('inertia-form', function ($app) {
-            return new InertiaForm($app);
-        });
     }
 
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes(

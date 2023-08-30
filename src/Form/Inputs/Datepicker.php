@@ -12,10 +12,19 @@ class Datepicker extends Text
 
     protected ?string $maxDate = null;
 
+    /**
+     * @var array <string>
+     */
     protected array $disabledDates = [];
 
+    /**
+     * @var array <string>
+     */
     protected array $allowedDates = [];
 
+    /**
+     * @var array <int>
+     */
     protected array $disabledWeekDays = [];
 
     protected array $fixRules = [
@@ -56,6 +65,9 @@ class Datepicker extends Text
         return $this;
     }
 
+    /**
+     * @param  array<string>  $disabledDates
+     */
     public function setDisabledDates(array $disabledDates): Datepicker
     {
         $this->disabledDates = $disabledDates;
@@ -63,6 +75,9 @@ class Datepicker extends Text
         return $this;
     }
 
+    /**
+     * @param  array<string>  $allowedDates
+     */
     public function setAllowedDates(array $allowedDates): Datepicker
     {
         $this->allowedDates = $allowedDates;
@@ -70,6 +85,9 @@ class Datepicker extends Text
         return $this;
     }
 
+    /**
+     * @param  array<int>  $disabledWeekDays
+     */
     public function setDisabledWeekDays(array $disabledWeekDays): Datepicker
     {
         $this->disabledWeekDays = $disabledWeekDays;

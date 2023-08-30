@@ -14,8 +14,14 @@ class Input implements InputInterface
 
     protected string $help = '';
 
+    /**
+     * @var array<string>
+     */
     protected array $fixRules = [];
 
+    /**
+     * @param  array<string>|string  $rules
+     */
     public function __construct(
         protected string $name,
         protected array|string $rules = [],
@@ -43,6 +49,9 @@ class Input implements InputInterface
         ];
     }
 
+    /**
+     * @return array<string>
+     */
     protected function getRules(): array
     {
         $rules = is_string($this->rules) ? explode('|', $this->rules) : $this->rules;

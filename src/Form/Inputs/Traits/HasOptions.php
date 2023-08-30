@@ -4,9 +4,12 @@ namespace Khodakhah\InertiaForm\Form\Inputs\Traits;
 
 trait HasOptions
 {
+    /**
+     * @var array <array{value: int|string, label: string}>
+     */
     protected array $options = [];
 
-    public function addOption($value, $label): static
+    public function addOption(int|string $value, string $label): static
     {
         $this->options[] = [
             'value' => $value,
