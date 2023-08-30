@@ -6,7 +6,7 @@ use Khodakhah\InertiaForm\InertiaForm;
 
 use function PHPUnit\Framework\assertSame;
 
-it('creates all inputs', function (array $input) {
+it('creates inputs', function (array $input) {
     $form = new InertiaForm();
     if ($input['type'] === 'checkbox') {
         $form->checkbox($input['key'])
@@ -18,7 +18,7 @@ it('creates all inputs', function (array $input) {
         $form->datepicker($input['key'])
             ->setDefault($input['default']);
     } elseif ($input['type'] === 'datetime-local') {
-        $form->datetimelocal($input['key'])
+        $form->datetimeLocal($input['key'])
             ->setDefault($input['default']);
     } elseif ($input['type'] === 'email') {
         $form->email($input['key'])
@@ -100,7 +100,7 @@ it('creates all inputs', function (array $input) {
             'placeholder' => '',
         ]
     ],
-    'datetime' => [
+    'datetime-local' => [
         [
             'type' => 'datetime-local',
             'key' => 'datetimelocal',

@@ -2,7 +2,7 @@
 
 namespace Khodakhah\InertiaForm\Form\Inputs;
 
-class Datetimelocal extends Text
+class DatetimeLocal extends Text
 {
     protected string $type = 'datetime-local';
 }

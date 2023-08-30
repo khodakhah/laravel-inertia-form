@@ -6,7 +6,7 @@ use Khodakhah\InertiaForm\Form\InputInterface;
 use Khodakhah\InertiaForm\Form\Inputs\Checkbox;
 use Khodakhah\InertiaForm\Form\Inputs\Date;
 use Khodakhah\InertiaForm\Form\Inputs\Datepicker;
-use Khodakhah\InertiaForm\Form\Inputs\Datetimelocal;
+use Khodakhah\InertiaForm\Form\Inputs\DatetimeLocal;
 use Khodakhah\InertiaForm\Form\Inputs\Email;
 use Khodakhah\InertiaForm\Form\Inputs\Month;
 use Khodakhah\InertiaForm\Form\Inputs\Number;
@@ -25,7 +25,7 @@ use Khodakhah\InertiaForm\Form\Inputs\Week;
  * @method Checkbox checkbox(string $name, string|array $rules = [])
  * @method Date date(string $name, string|array $rules = [])
  * @method Datepicker datepicker(string $name, string|array $rules = [])
- * @method Datetimelocal datetimelocal(string $name, string|array $rules = [])
+ * @method DatetimeLocal datetimeLocal(string $name, string|array $rules = [])
  * @method Email email(string $name, string|array $rules = [])
  * @method Month month(string $name, string|array $rules = [])
  * @method Number number(string $name, string|array $rules = [])
