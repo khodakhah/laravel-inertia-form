@@ -1,4 +1,4 @@
-name: Test on Push
+name: Testing
 on: [workflow_call]
 jobs:
   test:
@@ -26,12 +26,12 @@ jobs:
         run: composer install
 
       # Composer analysis
-      - name: Composer analyse
+      - name: Code analyse
         run: composer analyse
 
       # Composer linting
-      - name: Composer lint
-        run: composer lint
+      - name: Linting
+        run: composer pint
 
       # Run tests
       - name: Run tests
