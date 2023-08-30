@@ -44,7 +44,7 @@ jobs:
       - name: Bump release version
         if: startsWith(github.event.inputs.release-type, 'pre') != true
         run: |
-          echo "NEW_VERSION=$(php composer.phar --no-ansi --no-interaction --no-scripts --quiet increment --no-git ${RELEASE_TYPE})" >> $GITHUB_ENV
+          echo "NEW_VERSION=$(composer --no-ansi --no-interaction --no-scripts --quiet increment --no-git ${RELEASE_TYPE})" >> $GITHUB_ENV
           echo "RELEASE_TAG=latest" >> $GITHUB_ENV
         env:
           RELEASE_TYPE: ${{ github.event.inputs.release-type }}
@@ -54,7 +54,7 @@ jobs:
       - name: Bump pre-release version
         if: startsWith(github.event.inputs.release-type, 'pre')
         run: |
-          echo "NEW_VERSION=$(php composer.phar --no-ansi --no-interaction --no-scripts --quiet increment --pre-release=beta --no-git ${RELEASE_TYPE})" >> $GITHUB_ENV
+          echo "NEW_VERSION=$(composer --no-ansi --no-interaction --no-scripts --quiet increment --pre-release=beta --no-git ${RELEASE_TYPE})" >> $GITHUB_ENV
           echo "RELEASE_TAG=beta" >> $GITHUB_ENV
         env:
           RELEASE_TYPE: ${{ github.event.inputs.release-type }}
