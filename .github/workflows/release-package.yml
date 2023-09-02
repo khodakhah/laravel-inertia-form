@@ -2,8 +2,8 @@ name: Release package
 on:
   workflow_dispatch:
     inputs:
-      release-type:
-        description: 'Release type (one of): patch, minor, major, prepatch, preminor, premajor, prerelease'
+      release-tag:
+        description: 'Release tag: enter the tag name for the release'
         required: true
 jobs:
   tests:
@@ -39,34 +39,12 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Actions"
 
-      # Bump package version
-      # Use tag latest
-      - name: Bump release version
-        if: startsWith(github.event.inputs.release-type, 'pre') != true
-        run: |
-          NEW_VERSION=$(composer --no-ansi --no-interaction --no-scripts --quiet show -D | grep 'versions\:' | sed -E 's/versions:\s+\[//; s/\]//')
-          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-          echo "RELEASE_TAG=latest" >> $GITHUB_ENV
-        env:
-          RELEASE_TYPE: ${{ github.event.inputs.release-type }}
-
-      # Bump package pre-release version
-      # Use tag beta for pre-release versions
-      - name: Bump pre-release version
-        if: startsWith(github.event.inputs.release-type, 'pre')
-        run: |
-          NEW_VERSION=$(composer --no-ansi --no-interaction --no-scripts --quiet show -D | grep 'versions\:' | sed -E 's/versions:\s+\[//; s/\]//')
-          echo "NEW_VERSION=$NEW_VERSION-beta" >> $GITHUB_ENV
-          echo "RELEASE_TAG=beta" >> $GITHUB_ENV
-        env:
-          RELEASE_TYPE: ${{ github.event.inputs.release-type }}
-
       # Update changelog unreleased section with new version
       - name: Update changelog
         uses: superfaceai/release-changelog-action@v1
         with:
           path-to-changelog: CHANGELOG.md
-          version: ${{ env.NEW_VERSION }}
+          version: ${{ github.event.inputs.release-tag }}
           operation: release
 
       # Commit changes
@@ -74,8 +52,8 @@ jobs:
         run: |
           git add "composer.json"
           git add "CHANGELOG.md"
-          git commit -m "chore: release ${{ env.NEW_VERSION }}"
-          git tag ${{ env.NEW_VERSION }}
+          git commit -m "chore: release ${{ github.event.inputs.release-tag }}"
+          git tag ${{ github.event.inputs.release-tag }}
 
       # Push repository changes
       - name: Push changes to repository
@@ -94,15 +72,15 @@ jobs:
         uses: superfaceai/release-changelog-action@v1
         with:
           path-to-changelog: CHANGELOG.md
-          version: ${{ env.NEW_VERSION }}
+          version: ${{ github.event.inputs.release-tag }}
           operation: read
 
       # Update GitHub release with changelog
       - name: Update GitHub release documentation
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.NEW_VERSION }}
+          tag_name: ${{ github.event.inputs.release-tag }}
           body: ${{ steps.get-changelog.outputs.changelog }}
-          prerelease: ${{ startsWith(github.event.inputs.release-type, 'pre') }}
+          prerelease: ${{ endsWith(github.event.inputs.release-tag, 'alpha') endsWith(github.event.inputs.release-tag, 'beta') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

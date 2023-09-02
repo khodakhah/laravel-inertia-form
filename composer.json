@@ -1,6 +1,5 @@
 {
     "name": "khodakhah/laravel-inertia-form",
-    "version": "0.0.0",
     "description": "A package for Inertia.js forms integration in Laravel",
     "type": "library",
     "license": "MIT",
