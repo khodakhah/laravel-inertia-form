@@ -81,6 +81,6 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.release-tag }}
           body: ${{ steps.get-changelog.outputs.changelog }}
-          prerelease: ${{ endsWith(github.event.inputs.release-tag, 'alpha') endsWith(github.event.inputs.release-tag, 'beta') }}
+          prerelease: ${{ endsWith(github.event.inputs.release-tag, 'alpha') || endsWith(github.event.inputs.release-tag, 'beta') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
