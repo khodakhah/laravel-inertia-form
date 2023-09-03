@@ -48,10 +48,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "InertiaFormServiceProvider"
+                "Khodakhah\\InertiaForm\\InertiaFormServiceProvider"
             ]
         }
     },
-    "minimum-stability": "alpha",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
