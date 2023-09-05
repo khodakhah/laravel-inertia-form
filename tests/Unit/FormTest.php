@@ -1,5 +1,6 @@
 <?php
 
+use Khodakhah\InertiaForm\Exceptions\InvalidSetupException;
 use Khodakhah\InertiaForm\InertiaForm;
 
 use function PHPUnit\Framework\assertSame;
@@ -243,6 +244,7 @@ it('returns correct validations', function () {
         ->setLabel('Phone')
         ->setPlaceholder('Enter your phone number');
     $form->datepicker('date')
+        ->setRequired()
         ->setLabel('Date')
         ->setPlaceholder('Enter your date of birth');
 
@@ -259,6 +261,129 @@ it('returns correct validations', function () {
         ],
         'date' => [
             'date',
+            'required',
         ],
     ], $form->toValidation());
 });
+
+it('returns correct inputs with using setOptions', function (array $input) {
+    $form = new InertiaForm();
+    if ($input['type'] == 'select') {
+        $form->select($input['key'])
+            ->setDefault($input['default'])
+            ->setOptions($input['options']);
+    } elseif ($input['type'] == 'radio') {
+        $form->radio($input['key'])
+            ->setDefault($input['default'])
+            ->setOptions($input['options']);
+    }
+
+    assertSame([$input], $form->toInertia());
+})->with([
+    'radio' => [
+        [
+            'type' => 'radio',
+            'key' => 'radio',
+            'label' => 'Radio',
+            'default' => 'radio',
+            'help' => '',
+            'required' => false,
+            'options' => [
+                [
+                    'value' => 1,
+                    'label' => 'option 1',
+                ],
+                [
+                    'value' => 2,
+                    'label' => 'option 2',
+                ],
+            ],
+        ],
+    ],
+    'select' => [
+        [
+            'type' => 'select',
+            'key' => 'select',
+            'label' => 'Select',
+            'default' => 1,
+            'help' => '',
+            'required' => false,
+            'placeholder' => '',
+            'options' => [
+                [
+                    'value' => 1,
+                    'label' => 'option 1',
+                ],
+                [
+                    'value' => 2,
+                    'label' => 'option 2',
+                ],
+            ],
+        ],
+    ],
+]);
+
+it('fails with passing invalid array to setOptions', function (array $options, string $exceptionMessage) {
+    $this->expectException(InvalidSetupException::class);
+    $this->expectExceptionMessage($exceptionMessage);
+
+    $form = new InertiaForm();
+    $form->select('select')
+        ->setDefault(1)
+        ->setOptions($options);
+})->with([
+    'failed label in one item' => [
+        [
+            [
+                'value' => 1,
+                'label' => 'option 1',
+            ],
+            [
+                'value' => 2,
+            ],
+        ],
+        'Options must have column `label` in all items',
+    ],
+    'failed value in one item' => [
+        [
+            [
+                'value' => 1,
+                'label' => 'option 1',
+            ],
+            [
+                'label' => 'option 2',
+            ],
+        ],
+        'Options must have column `value` in all items',
+    ],
+    'failed value and label in one item' => [
+        [
+            [
+                'value' => 1,
+                'label' => 'option 1',
+            ],
+            [
+                'something else' => 'option 2',
+            ],
+        ],
+        'Options must have column `value` in all items',
+    ],
+    'failed the columns value and label in all items' => [
+        [
+            [
+                'something else 1' => 'option 1',
+            ],
+            [
+                'something else 2' => 'option 2',
+            ],
+        ],
+        'Options must have column `value` in all items',
+    ],
+    'array of integers' => [
+        [
+            1,
+            2,
+        ],
+        'Options must have column `value` in all items',
+    ],
+]);

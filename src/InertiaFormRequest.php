@@ -6,16 +6,17 @@ use Illuminate\Foundation\Http\FormRequest;
 
 abstract class InertiaFormRequest extends FormRequest
 {
-    abstract protected function formInputs(InertiaForm $form): InertiaForm;
+    protected static function formInputs(InertiaForm $form): InertiaForm
+    {
+        return $form;
+    }
 
     /**
      * @return array<string, mixed>
      */
-    public function toInertia(): array
+    public static function toInertia(): array
     {
-        $form = $this->formInputs(new InertiaForm);
-
-        return $form->toInertia();
+        return self::formInputs(new InertiaForm)->toInertia();
     }
 
     /**
@@ -23,8 +24,6 @@ abstract class InertiaFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        $form = $this->formInputs(new InertiaForm);
-
-        return $form->toValidation();
+        return self::formInputs(new InertiaForm)->toValidation();
     }
 }
