@@ -16,7 +16,7 @@ abstract class InertiaFormRequest extends FormRequest
      */
     public static function toInertia(): array
     {
-        return self::formInputs(new InertiaForm)->toInertia();
+        return static::formInputs(new InertiaForm)->toInertia();
     }
 
     /**
@@ -24,6 +24,6 @@ abstract class InertiaFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return self::formInputs(new InertiaForm)->toValidation();
+        return static::formInputs(new InertiaForm)->toValidation();
     }
 }
