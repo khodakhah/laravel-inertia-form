@@ -2,6 +2,8 @@
 
 namespace Khodakhah\InertiaForm\Form\Inputs\Traits;
 
+use Khodakhah\InertiaForm\Exceptions\InvalidSetupException;
+
 trait HasOptions
 {
     /**
@@ -15,6 +17,26 @@ trait HasOptions
             'value' => $value,
             'label' => $label,
         ];
+
+        return $this;
+    }
+
+    /**
+     * @param  array<array{value: int|string, label: string}>  $options
+     *
+     * @throws InvalidSetupException
+     */
+    public function setOptions(array $options): static
+    {
+        if (count(array_column($options, 'value')) !== count($options)) {
+            throw new InvalidSetupException('Options must have column `value` in all items');
+        }
+
+        if (count(array_column($options, 'label')) !== count($options)) {
+            throw new InvalidSetupException('Options must have column `label` in all items');
+        }
+
+        $this->options = $options;
 
         return $this;
     }

@@ -27,7 +27,7 @@ class Input implements InputInterface
         protected array|string $rules = [],
     ) {
         $transKey = "validation.attributes.$name";
-        $this->label = trans($transKey) !== "validation.attributes.$name" ? trans($transKey) : ucfirst($name);
+        $this->label = "validation.attributes.$name" !== trans($transKey) ? trans($transKey) : ucfirst($name);
     }
 
     public function toInertia(): array
