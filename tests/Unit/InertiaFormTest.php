@@ -73,7 +73,7 @@ it('creates inputs', function (array $input) {
         $form->week($input['key'])
             ->setDefault($input['default']);
     }
-    assertSame([$input], $form->toInertia());
+    assertSame([$input['key'] => $input], $form->toInertia());
 })->with([
     'checkbox' => [
         [
@@ -278,7 +278,7 @@ it('returns correct inputs with using setOptions', function (array $input) {
             ->setOptions($input['options']);
     }
 
-    assertSame([$input], $form->toInertia());
+    assertSame([$input['key'] => $input], $form->toInertia());
 })->with([
     'radio' => [
         [

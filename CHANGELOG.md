@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New method `setOptions` to set the options of select and radio by passing an array
 ### Changed
 - To allow the use of child classes of `InertiaFormRequest` without validation, the `formInputs` and `toInertia` methods are now static.
+### Fixed
+- Sync response! Added input keys as the response array keys
 
 ## 0.0.1-alpha - 2023-09-02
 ### Added

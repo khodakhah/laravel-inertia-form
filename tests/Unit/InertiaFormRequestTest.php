@@ -7,7 +7,7 @@ use function PHPUnit\Framework\assertSame;
 it('returns the correct inertia array', function () {
     $request = new ExampleFormRequest();
     assertSame([
-        [
+        'name' => [
             'type' => 'text',
             'key' => 'name',
             'label' => 'Name',
@@ -16,7 +16,7 @@ it('returns the correct inertia array', function () {
             'required' => true,
             'placeholder' => '',
         ],
-        [
+        'email' => [
             'type' => 'text',
             'key' => 'email',
             'label' => 'Email',
@@ -25,7 +25,7 @@ it('returns the correct inertia array', function () {
             'required' => true,
             'placeholder' => '',
         ],
-        [
+        'select' => [
             'type' => 'select',
             'key' => 'select',
             'label' => 'Select',
@@ -44,7 +44,7 @@ it('returns the correct inertia array', function () {
                 ],
             ],
         ],
-        [
+        'checkbox' => [
             'type' => 'checkbox',
             'key' => 'checkbox',
             'label' => 'Checkbox',
@@ -52,7 +52,7 @@ it('returns the correct inertia array', function () {
             'help' => '',
             'required' => false,
         ],
-        [
+        'radio' => [
             'type' => 'radio',
             'key' => 'radio',
             'label' => 'Radio',
@@ -70,7 +70,7 @@ it('returns the correct inertia array', function () {
                 ],
             ],
         ],
-        [
+        'textarea' => [
             'type' => 'textarea',
             'key' => 'textarea',
             'label' => 'Textarea',
@@ -79,7 +79,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'date' => [
             'type' => 'date',
             'key' => 'date',
             'label' => 'Date',
@@ -88,7 +88,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'time' => [
             'type' => 'time',
             'key' => 'time',
             'label' => 'Time',
@@ -97,7 +97,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'datetimeLocal' => [
             'type' => 'datetime-local',
             'key' => 'datetimeLocal',
             'label' => 'DatetimeLocal',
@@ -106,7 +106,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'datepicker' => [
             'type' => 'datepicker',
             'key' => 'datepicker',
             'label' => 'Datepicker',
@@ -121,7 +121,7 @@ it('returns the correct inertia array', function () {
             'allowedDates' => [],
             'disabledWeekDays' => [],
         ],
-        [
+        'month' => [
             'type' => 'month',
             'key' => 'month',
             'label' => 'Month',
@@ -130,7 +130,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'number' => [
             'type' => 'number',
             'key' => 'number',
             'label' => 'Number',
@@ -142,7 +142,7 @@ it('returns the correct inertia array', function () {
             'min' => null,
             'digits' => 0,
         ],
-        [
+        'password' => [
             'type' => 'password',
             'key' => 'password',
             'label' => 'Password',
@@ -151,7 +151,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'search' => [
             'type' => 'search',
             'key' => 'search',
             'label' => 'Search',
@@ -160,7 +160,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'tel' => [
             'type' => 'tel',
             'key' => 'tel',
             'label' => 'Tel',
@@ -169,7 +169,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'url' => [
             'type' => 'url',
             'key' => 'url',
             'label' => 'Url',
@@ -178,7 +178,7 @@ it('returns the correct inertia array', function () {
             'required' => false,
             'placeholder' => '',
         ],
-        [
+        'week' => [
             'type' => 'week',
             'key' => 'week',
             'label' => 'Week',

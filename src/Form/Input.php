@@ -42,6 +42,11 @@ class Input implements InputInterface
         ];
     }
 
+    public function getKey(): string
+    {
+        return $this->name;
+    }
+
     public function toValidation(): array
     {
         return [

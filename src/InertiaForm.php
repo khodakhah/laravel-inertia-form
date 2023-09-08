@@ -73,7 +73,9 @@ class InertiaForm
     public function toInertia(): array
     {
         return collect($this->inputs)
-            ->map(fn (InputInterface $input) => $input->toInertia())
+            ->mapWithKeys(fn (InputInterface $input) => [
+                $input->getKey() => $input->toInertia(),
+            ])
             ->toArray();
     }
 

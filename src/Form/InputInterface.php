@@ -9,6 +9,8 @@ interface InputInterface
      */
     public function toInertia(): array;
 
+    public function getKey(): string;
+
     /**
      * @return array<string, array<string>>
      */
